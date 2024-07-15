@@ -10,12 +10,12 @@ from datetime import datetime, timedelta
 def query_ids(user, password, query_text=None, query_file=None, output=None):
     """Query IDS data"""
 
-    host = 'inteldatastore-cpm-prod.cuvvdjkpet4x.eu-west-1.redshift.amazonaws.com'
-    db = 'analytical'
-    port = '5439'
+    host = 'sample.eu-west-1.redshift.amazonaws.com'
+    db = 'sample'
+    port = 1234
 
     engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{db}", connect_args={'sslmode':'require'})
-    # engine = create_engine(f"jdbc:redshift:iam://inteldatastore-cpm-prod.cuvvdjkpet4x.eu-west-1.redshift.amazonaws.com:5439/analytical? idp_port=443&plugin_name=com.amazon.redshift.plugin.PingCredentialsProvider&ssl=true&partner_spid=intelds:prd:redshift:directclientEU&idp_host=ping-sso.schneider-electric.com")
+   
     engine.connect()
 
     if query_file:
@@ -39,8 +39,8 @@ print(f'Data Extracting for Report Date {report_date}')
 
 
 # Input from User
-folder = r'C:/Users/SESA676486/OneDrive - Schneider Electric/7) Data Quality and Support Centre/02. Finance RDO/03. Data Discovery/Daily Snapshots'
-user = input('SESAID: ')
+folder = r'folder'
+user = input('username')
 password = getpass.getpass("Password for " + user + ":")
 queries_path = folder + '/queries'
 all_queries = os.listdir(queries_path)
